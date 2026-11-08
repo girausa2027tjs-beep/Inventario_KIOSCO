@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#16285f">
+<title>Kiosco · Gira USA Monkeys</title>
+<style>
+  html, body { margin: 0; padding: 0; height: 100%; overflow: hidden; background: #fbf5e9; }
+  #app { position: fixed; inset: 0; width: 100%; height: 100%; height: 100dvh; border: 0; display: block; }
+  #cargando { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    gap: 14px; font-family: system-ui, sans-serif; color: #16285f; font-weight: 800; font-size: 18px; transition: opacity .3s; }
+  #cargando .spin { width: 34px; height: 34px; border: 5px solid #e6dcc6; border-top-color: #c3172d; border-radius: 50%;
+    animation: g .8s linear infinite; }
+  #cargando a { color: #2a59c9; font-size: 14px; font-weight: 700; visibility: hidden; }
+  @keyframes g { to { transform: rotate(360deg); } }
+</style>
+</head>
+<body>
+<!-- ===================================================================
+     PEGA AQUÍ TU URL DE APPS SCRIPT (la que termina en /exec), entre las comillas:
+     =================================================================== -->
+<script>
+  var URL_APP = 'https://script.google.com/macros/s/AKfycbzSmyvk50qj9VYpJQ2ReDVfJfDwZZYZa7oC5bkl35P2YF8ACP21XjL3m1B-nO27pzX6/exec';
+</script>
+
+<div id="cargando"><div class="spin"></div>Cargando kiosco…<a id="directo" href="#">¿No carga? Abrir directamente</a></div>
+<iframe id="app" title="Kiosco · Gira USA Monkeys" allow="clipboard-write"></iframe>
+
+<script>
+  var f = document.getElementById('app'), c = document.getElementById('cargando'), d = document.getElementById('directo');
+  d.href = URL_APP;
+  f.addEventListener('load', function () { c.style.opacity = '0'; setTimeout(function () { c.style.display = 'none'; }, 300); });
+  setTimeout(function () { d.style.visibility = 'visible'; }, 12000);
+  f.src = URL_APP;
+</script>
+</body>
+</html>
